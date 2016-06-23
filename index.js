@@ -11,13 +11,7 @@ const propTypes = {
 	connect: {
 		type: 'string'
 	},
-	max: {
-		type: 'number'
-	},
 	maxDistance: {
-		type: 'number'
-	},
-	min: {
 		type: 'number'
 	},
 	minDistance: {
@@ -41,6 +35,9 @@ const propTypes = {
 	onUpdate: {
 		type: 'function'
 	},
+	range: {
+		type: 'object'
+	},
 	rtl: {
 		type: 'boolean'
 	},
@@ -57,10 +54,12 @@ const propTypes = {
 
 const defaultProps = {
 	connect: 'lower',
-	max: 100,
 	maxDistance: null,
-	min: 0,
 	minDistance: null,
+	range: {
+		max: 100,
+		min: 0
+	},
 	rtl: false,
 	start: [0],
 	step: null,
@@ -70,15 +69,15 @@ const defaultProps = {
 const parse = arr => arr.map(x => parseFloat(x));
 
 const afterMount = ({props}, el) => {
-	const {connect, max, maxDistance, min, minDistance, onChange, onEnd, onSet, onSlide, onStart, onUpdate, rtl, start, step, vertical} = props;
+	const {connect, maxDistance, minDistance, onChange, onEnd, onSet, onSlide, onStart, onUpdate, range, rtl, start, step, vertical} = props;
 	const arr = arrify(start);
 
 	if (!arr.length) {
-		arr.push(min);
+		arr.push(range.min);
 	}
 
 	if (connect === true && arr.length !== 2) {
-		arr.push(max);
+		arr.push(range.max);
 	}
 
 	nouislider.create(el, condenseKeys({
@@ -87,7 +86,7 @@ const afterMount = ({props}, el) => {
 		limit: maxDistance,
 		margin: minDistance,
 		orientation: vertical ? 'vertical' : 'horizontal',
-		range: {max, min},
+		range,
 		start: arr,
 		step
 	}));
