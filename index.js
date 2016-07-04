@@ -47,6 +47,9 @@ const propTypes = {
 	step: {
 		type: 'number'
 	},
+	tooltips: {
+		type: 'function'
+	},
 	vertical: {
 		type: 'boolean'
 	}
@@ -69,7 +72,7 @@ const defaultProps = {
 const parse = arr => arr.map(x => parseFloat(x));
 
 const afterMount = ({props}, el) => {
-	const {connect, maxDistance, minDistance, onChange, onEnd, onSet, onSlide, onStart, onUpdate, range, rtl, start, step, vertical} = props;
+	const {connect, maxDistance, minDistance, onChange, onEnd, onSet, onSlide, onStart, onUpdate, range, rtl, start, step, tooltips, vertical} = props;
 	const arr = arrify(start);
 
 	if (!arr.length) {
@@ -88,7 +91,8 @@ const afterMount = ({props}, el) => {
 		orientation: vertical ? 'vertical' : 'horizontal',
 		range,
 		start: arr,
-		step
+		step,
+		tooltips
 	}));
 
 	if (onChange) {

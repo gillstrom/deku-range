@@ -86,12 +86,19 @@ Type: `number`
 
 Set the interval of the range.
 
+###	tooltips
+
+Type: `boolean`, 'array' or `function`  
+Default: `false`
+
+Provide a basic tooltip function.
+
 ###	vertical
 
 Type: `boolean`  
 Default: `false`
 
-Set the orientation to vertical
+Set the orientation to vertical.
 
 
 ## License
