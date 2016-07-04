@@ -1,6 +1,6 @@
 {
   "name": "deku-range",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Input range component for Deku",
   "license": "MIT",
   "repository": "gillstrom/deku-range",
